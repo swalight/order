@@ -40,7 +40,7 @@ public class LockFilter implements Filter {
             filterChain.doFilter(request, response);
         } else {
             //拦截非GET请求且当前状态为LOCK
-            if(!request.getMethod().equals("GET")&&isLock()){
+            if((url.indexOf("/orderInfo")>0)&&!request.getMethod().equals("GET")&&isLock()){
                 logger.info("****LockFilter status is lock****");
                 RestResult restResult = new RestResult(405,"LOCKING");
                 Gson gson = new Gson();
